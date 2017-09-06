@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/yogin16/daisy/issues"
   },
-  "homepage": "https://github.com/yogin16/daisy#readme"
+  "homepage": "https://github.com/yogin16/daisy#readme",
+  "dependencies": {
+    "@slack/client": "^3.12.0"
+  }
 }
