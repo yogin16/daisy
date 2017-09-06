@@ -1,0 +1,19 @@
+{
+  "name": "daisy",
+  "version": "1.0.0",
+  "description": "Slack bot for daily motivation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yogin16/daisy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yogin16/daisy/issues"
+  },
+  "homepage": "https://github.com/yogin16/daisy#readme"
+}
