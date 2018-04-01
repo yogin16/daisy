@@ -6,8 +6,10 @@ var emma = require('./src/emma');
 app.get('/emma', function (req, res) {
     emma(function (message) {
         console.log("message: " + JSON.stringify(message));
+        res.json(message);
     }, function () {
         console.log("error!");
+        res.error();
     });
 });
 
