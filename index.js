@@ -4,6 +4,8 @@ var app = express();
 
 var emma = require('./src/emma');
 
+const MongoClient = require('mongodb').MongoClient;
+
 app.get('/emma', function (req, res) {
     emma(function (message) {
         console.log("message: " + JSON.stringify(message));
@@ -34,6 +36,24 @@ app.get('/slack/oauth/callback', function (req, res) {
         }).on('end', function () {
             console.log("body:" + body);
             var json = JSON.parse(body);
+
+            var user = {};
+            user.accessToken = json.access_token;
+            user.userId = json.user_id;
+            user.teamName = json.team_name;
+            user.teamId = json.team_id;
+            user.botUserId = json.bot.bot_user_id;
+            user.botToken = json.bot.bot_access_token;
+
+            MongoClient.connect('mongodb://localhost:27017/', function (err, client) {
+                if (err) {
+                    console.log(err);
+                    res.json({status:"mongo error"});
+                }
+
+                var db = client.db("DAISY");
+                db.collection("user").insertOne(user);
+            });
 
             res.json({status:"ok"});
         }).on('error', function () {
