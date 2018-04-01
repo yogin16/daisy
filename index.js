@@ -4,6 +4,7 @@ var app = express();
 
 var emma = require('./src/emma');
 var slacker = require('./src/slacker');
+var emmaSlacker = require('./src/emmaSlacker');
 
 const MongoClient = require('mongodb').MongoClient;
 
@@ -18,30 +19,10 @@ app.get('/emma', function (req, res) {
 });
 
 app.get('/emma/slacker', function (req, res) {
-    emma(function (message) {
-        console.log("message: " + JSON.stringify(message));
-
-        MongoClient.connect('mongodb://localhost:27017/', function (err, client) {
-            if (err) {
-                console.log(err);
-                res.json({status: "mongo error"});
-            }
-
-            var db = client.db("DAISY");
-            var users = db.collection("user").find();
-            users.forEach(function (user) {
-                var slackMessage = {
-                    text: message.text,
-                    channel: user.userId,
-                    as_user: true
-                };
-                slacker(user.botToken, slackMessage);
-            })
-        });
-
-    }, function () {
-        console.log("error!");
-        res.error();
+    emmaSlacker(function (message) {
+        res.json(message);
+    }, function (err) {
+        res.error(err);
     });
 });
 
