@@ -55,13 +55,13 @@ app.get('/slack/oauth/callback', function (req, res) {
             user.botUserId = json.bot.bot_user_id;
             user.botToken = json.bot.bot_access_token;
 
-            MongoClient.connect('mongodb://localhost:27017/', function (err, client) {
+            MongoClient.connect('mongodb://daisy:daisy@ds139919.mlab.com:39919/daisy', function (err, client) {
                 if (err) {
                     console.log(err);
                     res.json({status:"mongo error"});
                 }
 
-                var db = client.db("DAISY");
+                var db = client.db("daisy");
                 db.collection("user").insertOne(user);
             });
 
