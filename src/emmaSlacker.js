@@ -17,7 +17,7 @@ var emmaSlacker = function (success, error) {
             var users = db.collection("user").find();
             users.forEach(function (user) {
                 var slackMessage = {
-                    text: "stripped shirt! " + " " + "https://i.imgur.com/ygJ6M0z.jpg",
+                    text: message.text + " " + message.image,
                     channel: user.userId,
                     as_user: true
                 };
