@@ -1,6 +1,6 @@
 var https = require('https');
 
-var paths = ['/r/EmmaWatson.json', '/r/GetMotivated.json'];
+var paths = ['/r/EmmaWatson.json', '/r/GetMotivated.json', '/r/ProgrammerHumor.json'];
 
 var options = {
     host: 'www.reddit.com',
